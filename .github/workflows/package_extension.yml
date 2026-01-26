@@ -4,6 +4,10 @@ on:
   release:
     types: [published]
 
+# Ajout des permissions nécessaires pour modifier la release
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,15 +18,16 @@ jobs:
       - name: Checkout Library Code
         uses: actions/checkout@v4
         with:
-          repository: paulhenry46/pyfeyngen # Remplace par ton vrai pseudo/nom de dépôt
+          repository: paulhenry46/pyfeyngen
           path: temp_lib
 
       - name: Prepare Extension Folder
         run: |
-          # Créer le dossier de destination dans l'extension
-          # Copier uniquement le contenu du dossier src/pyfeyngen
+          # Créer le dossier de destination si nécessaire et copier la lib
+          mkdir -p ./pyfeyngen/
           cp -r temp_lib/src/pyfeyngen/* ./pyfeyngen/
-          # Nettoyer le dossier temporaire et les fichiers inutiles (.git, etc.)
+          
+          # Nettoyage
           rm -rf temp_lib
           rm -rf .git
           rm -rf .github
@@ -31,11 +36,9 @@ jobs:
         run: zip -r pyinkfeyn_extension.zip .
 
       - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
+        uses: softprops/action-gh-release@v2
+        with:
+          # Spécifie le fichier à uploader
+          files: pyinkfeyn_extension.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./pyinkfeyn_extension.zip
-          asset_name: pyinkfeyn_v${{ github.event.release.tag_name }}.zip
-          asset_content_type: application/zip
