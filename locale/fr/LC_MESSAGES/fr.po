@@ -1,0 +1,203 @@
+# French translations for PACKAGE package.
+# Copyright (C) 2026 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Paulhenry Saux <github@paulhenry.saux.fr>, 2026.
+#
+msgid ""
+msgstr ""
+"#-#-#-#-#  pyinkfeyn.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-26 17:26+0100\n"
+"PO-Revision-Date: 2026-01-26 17:36+0100\n"
+"Last-Translator: Paulhenry Saux <github@paulhenry.saux.fr>\n"
+"Language-Team: French <traduc@traduc.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: feynman_generate.inx:3 feynman_generate.inx:9
+msgid "PyinkFeyn Generator"
+msgstr "Générateur PyinkFeyn"
+
+#: feynman_generate.inx:8
+msgid "Generate"
+msgstr "Générer"
+
+#: feynman_generate.inx:10
+msgid "Syntax (e.g.: e+ e- > gamma > mu+ mu-)"
+msgstr "Syntaxe (ex : e+ e- > gamma > mu+ mu-)"
+
+#: feynman_generate.inx:11
+msgid "Leave empty to manually style the selection."
+msgstr "Laissez vide pour styliser manuellement la sélection."
+
+#: feynman_generate.inx:13
+msgid "Diagram scale"
+msgstr "Échelle du diagramme"
+
+#: feynman_generate.inx:15 feynman_draw.inx:59
+msgid "Advanced options"
+msgstr "Options avancées"
+
+#: feynman_generate.inx:16 feynman_draw.inx:60
+msgid "Momentum length"
+msgstr "Longueur du momentum"
+
+#: feynman_generate.inx:17 feynman_draw.inx:61
+msgid "Momentum offset"
+msgstr "Décalage du momentum"
+
+#: feynman_generate.inx:18 feynman_draw.inx:62
+msgid "Put labels between $"
+msgstr "Mettre les tags entre $"
+
+#: feynman_generate.inx:26 feynman_draw.inx:69
+msgid "Physics"
+msgstr "Physique"
+
+#: feynman_draw.inx:3
+msgid "PyinkFeyn Builder"
+msgstr "Editeur PyinkFeyn"
+
+#: feynman_draw.inx:7
+msgid "Propagator"
+msgstr "Propagateur"
+
+#: feynman_draw.inx:8
+msgid "Particle type:"
+msgstr "Type de particule :"
+
+#: feynman_draw.inx:9
+msgid "Photon / Boson (Wavy)"
+msgstr "Photon / Boson (Sinuosité)"
+
+#: feynman_draw.inx:10
+msgid "Gluon (Loops)"
+msgstr "Gluon (Boucles)"
+
+#: feynman_draw.inx:11
+msgid "Fermion (Straight line)"
+msgstr "Fermion (Ligne droite)"
+
+#: feynman_draw.inx:12
+msgid "Scalar (Dashed)"
+msgstr "Scalaire (Tirets)"
+
+#: feynman_draw.inx:13
+msgid "Ghost (Dotted)"
+msgstr "Ghost (Pointillés)"
+
+#: feynman_draw.inx:14
+msgid "Don't touch line style"
+msgstr "Ne pas modifier le style"
+
+#: feynman_draw.inx:17
+msgid "Amplitude (Height)"
+msgstr "Amplitude (Hauteur)"
+
+#: feynman_draw.inx:18
+msgid "Flow arrow:"
+msgstr "Flèche de flux :"
+
+#: feynman_draw.inx:19 feynman_draw.inx:28 feynman_draw.inx:42
+msgid "None"
+msgstr "Aucune"
+
+#: feynman_draw.inx:20 feynman_draw.inx:29
+msgid "To the right"
+msgstr "Vers la droite"
+
+#: feynman_draw.inx:21 feynman_draw.inx:30
+msgid "To the left"
+msgstr "Vers la gauche"
+
+#: feynman_draw.inx:22 feynman_draw.inx:31
+msgid "Upwards"
+msgstr "Vers le haut"
+
+#: feynman_draw.inx:23 feynman_draw.inx:32
+msgid "Downwards"
+msgstr "Vers le bas"
+
+#: feynman_draw.inx:24 feynman_draw.inx:33
+msgid "Forward (A to B)"
+msgstr "Sens direct (A vers B)"
+
+#: feynman_draw.inx:25 feynman_draw.inx:34
+msgid "Backward (B to A)"
+msgstr "Sens inverse (B vers A)"
+
+#: feynman_draw.inx:27
+msgid "Momentum arrow:"
+msgstr "Flèche de momentum :"
+
+#: feynman_draw.inx:36
+msgid "Momentum Label (e.g.: p_1)"
+msgstr "Label du momentum (ex : p_1)"
+
+#: feynman_draw.inx:39
+msgid "Vertices"
+msgstr "Sommets"
+
+#: feynman_draw.inx:40
+msgid "Options for selected ends:"
+msgstr "Options pour les extrémités :"
+
+#: feynman_draw.inx:41
+msgid "Vertex style:"
+msgstr "Style de sommet :"
+
+#: feynman_draw.inx:43
+msgid "Black dot (Dot)"
+msgstr "Point noir (Dot)"
+
+#: feynman_draw.inx:44
+msgid "Large circle (Blob)"
+msgstr "Gros cercle (Blob)"
+
+#: feynman_draw.inx:45
+msgid "Square (Mass)"
+msgstr "Carré (Masse)"
+
+#: feynman_draw.inx:47
+msgid "Vertex side:"
+msgstr "Côté du sommet :"
+
+#: feynman_draw.inx:48
+msgid "Both sides"
+msgstr "Les deux côtés"
+
+#: feynman_draw.inx:49
+msgid "Leftmost (X min)"
+msgstr "Le plus à gauche (X min)"
+
+#: feynman_draw.inx:50
+msgid "Rightmost (X max)"
+msgstr "Le plus à droite (X max)"
+
+#: feynman_draw.inx:51
+msgid "Topmost"
+msgstr "Le plus haut"
+
+#: feynman_draw.inx:52
+msgid "Bottommost"
+msgstr "Le plus bas"
+
+#: feynman_draw.inx:53
+msgid "Start of path"
+msgstr "Départ du tracé"
+
+#: feynman_draw.inx:54
+msgid "End of path"
+msgstr "Fin du tracé"
+
+#: feynman_draw.inx:56
+msgid "Vertex size"
+msgstr "Taille du sommet"
+
+#: feynman_draw.inx:57
+msgid "Apply to all nodes in path"
+msgstr "Appliquer à tous les nœuds"

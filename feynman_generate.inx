@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
-    <name>Feynman Builder Generate</name>
-    <id>org.physics.feynman_builder_generate</id>
+<inkscape-extension translationdomain="pyinkfeyn" xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>PyinkFeyn Generator</name>
+    <id>org.physics.pyinkfeyn_generate</id>
 
     <param name="tabs" type="notebook">
 
-        <page name="auto_draw_tab" gui-text="Auto-Draw">
-            <label appearance="header">Générateur PyFeyngen</label>
-            <param name="gen_syntax" type="string" gui-text="Syntaxe (ex: e+ e- > gamma > mu+ mu-)"></param>
-            <label>Laissez vide pour styliser manuellement la sélection.</label>
+        <page name="auto_draw_tab" gui-text="Generate">
+            <label appearance="header">PyinkFeyn Generator</label>
+            <param name="gen_syntax" type="string" gui-text="Syntax (e.g.: e+ e- > gamma > mu+ mu-)"></param>
             <spacer />
-            <param name="gen_scale" type="float" min="0.1" max="10.0" precision="1" gui-text="Échelle du diagramme">1.0</param>
+            <param name="gen_scale" type="float" min="0.1" max="10.0" precision="1" gui-text="Diagram scale">1.0</param>
         </page>
-        <page name="advanced_tab" gui-text="Options avancées">
-            <param name="momentum_length" type="float" min="0.1" max="100.0" gui-text="Longueur du momentum">15.0</param>
-            <param name="momentum_offset" type="float" min="0.1" max="100.0" gui-text="Offset du momentum">12.0</param>
-            <param name="label_latex" type="bool" gui-text="Mettre les label entre $">false</param>
+        <page name="advanced_tab" gui-text="Advanced options">
+            <param name="momentum_length" type="float" min="0.1" max="100.0" gui-text="Momentum length">15.0</param>
+            <param name="momentum_offset" type="float" min="0.1" max="100.0" gui-text="Momentum offset">12.0</param>
+            <param name="label_latex" type="bool" gui-text="Put labels between $">false</param>
         </page>
         
     </param>
@@ -23,7 +22,7 @@
     <effect>
         <object-type>path</object-type>
         <effects-menu>
-            <submenu name="Physique"/>
+            <submenu name="Physics"/>
         </effects-menu>
     </effect>
 

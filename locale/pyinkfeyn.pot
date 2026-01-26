@@ -1,0 +1,203 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"#-#-#-#-#  pyinkfeyn.pot (PACKAGE VERSION)  #-#-#-#-#\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-26 17:26+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: feynman_generate.inx:3 feynman_generate.inx:9
+msgid "PyinkFeyn Generator"
+msgstr ""
+
+#: feynman_generate.inx:8
+msgid "Generate"
+msgstr ""
+
+#: feynman_generate.inx:10
+msgid "Syntax (e.g.: e+ e- > gamma > mu+ mu-)"
+msgstr ""
+
+#: feynman_generate.inx:11
+msgid "Leave empty to manually style the selection."
+msgstr ""
+
+#: feynman_generate.inx:13
+msgid "Diagram scale"
+msgstr ""
+
+#: feynman_generate.inx:15 feynman_draw.inx:59
+msgid "Advanced options"
+msgstr ""
+
+#: feynman_generate.inx:16 feynman_draw.inx:60
+msgid "Momentum length"
+msgstr ""
+
+#: feynman_generate.inx:17 feynman_draw.inx:61
+msgid "Momentum offset"
+msgstr ""
+
+#: feynman_generate.inx:18 feynman_draw.inx:62
+msgid "Put labels between $"
+msgstr ""
+
+#: feynman_generate.inx:26 feynman_draw.inx:69
+msgid "Physics"
+msgstr ""
+
+#: feynman_draw.inx:3
+msgid "PyinkFeyn Builder"
+msgstr ""
+
+#: feynman_draw.inx:7
+msgid "Propagator"
+msgstr ""
+
+#: feynman_draw.inx:8
+msgid "Particle type:"
+msgstr ""
+
+#: feynman_draw.inx:9
+msgid "Photon / Boson (Wavy)"
+msgstr ""
+
+#: feynman_draw.inx:10
+msgid "Gluon (Loops)"
+msgstr ""
+
+#: feynman_draw.inx:11
+msgid "Fermion (Straight line)"
+msgstr ""
+
+#: feynman_draw.inx:12
+msgid "Scalar (Dashed)"
+msgstr ""
+
+#: feynman_draw.inx:13
+msgid "Ghost (Dotted)"
+msgstr ""
+
+#: feynman_draw.inx:14
+msgid "Don't touch line style"
+msgstr ""
+
+#: feynman_draw.inx:17
+msgid "Amplitude (Height)"
+msgstr ""
+
+#: feynman_draw.inx:18
+msgid "Flow arrow:"
+msgstr ""
+
+#: feynman_draw.inx:19 feynman_draw.inx:28 feynman_draw.inx:42
+msgid "None"
+msgstr ""
+
+#: feynman_draw.inx:20 feynman_draw.inx:29
+msgid "To the right"
+msgstr ""
+
+#: feynman_draw.inx:21 feynman_draw.inx:30
+msgid "To the left"
+msgstr ""
+
+#: feynman_draw.inx:22 feynman_draw.inx:31
+msgid "Upwards"
+msgstr ""
+
+#: feynman_draw.inx:23 feynman_draw.inx:32
+msgid "Downwards"
+msgstr ""
+
+#: feynman_draw.inx:24 feynman_draw.inx:33
+msgid "Forward (A to B)"
+msgstr ""
+
+#: feynman_draw.inx:25 feynman_draw.inx:34
+msgid "Backward (B to A)"
+msgstr ""
+
+#: feynman_draw.inx:27
+msgid "Momentum arrow:"
+msgstr ""
+
+#: feynman_draw.inx:36
+msgid "Momentum Label (e.g.: p_1)"
+msgstr ""
+
+#: feynman_draw.inx:39
+msgid "Vertices"
+msgstr ""
+
+#: feynman_draw.inx:40
+msgid "Options for selected ends or nodes:"
+msgstr ""
+
+#: feynman_draw.inx:41
+msgid "Vertex style:"
+msgstr ""
+
+#: feynman_draw.inx:43
+msgid "Black dot (Dot)"
+msgstr ""
+
+#: feynman_draw.inx:44
+msgid "Large circle (Blob)"
+msgstr ""
+
+#: feynman_draw.inx:45
+msgid "Square (Mass)"
+msgstr ""
+
+#: feynman_draw.inx:47
+msgid "Vertex side:"
+msgstr ""
+
+#: feynman_draw.inx:48
+msgid "Both sides"
+msgstr ""
+
+#: feynman_draw.inx:49
+msgid "Leftmost (X min)"
+msgstr ""
+
+#: feynman_draw.inx:50
+msgid "Rightmost (X max)"
+msgstr ""
+
+#: feynman_draw.inx:51
+msgid "Topmost"
+msgstr ""
+
+#: feynman_draw.inx:52
+msgid "Bottommost"
+msgstr ""
+
+#: feynman_draw.inx:53
+msgid "Start of path"
+msgstr ""
+
+#: feynman_draw.inx:54
+msgid "End of path"
+msgstr ""
+
+#: feynman_draw.inx:56
+msgid "Vertex size"
+msgstr ""
+
+#: feynman_draw.inx:57
+msgid "Apply to all nodes in path"
+msgstr ""
