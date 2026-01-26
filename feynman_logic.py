@@ -1,6 +1,5 @@
 import inkex
 import math
-import warnings
 from inkex import PathElement, Circle, Rectangle, Marker
 
 class FeynmanLogic(inkex.EffectExtension):
