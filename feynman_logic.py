@@ -1,9 +1,9 @@
 import inkex
 import math
+import warnings
 from inkex import PathElement, Circle, Rectangle, Marker
 
 class FeynmanLogic(inkex.EffectExtension):
-    # ... (patterns et add_arguments identiques) ...
     patterns = {
         "photon": {"d": "m 0,0 c 5,-10 10,10 15,0", "normal_offset": 0},
         "gluon": {
@@ -31,12 +31,15 @@ class FeynmanLogic(inkex.EffectExtension):
         pars.add_argument("--gen_syntax", type=str, default="")
         pars.add_argument("--gen_scale", type=float, default=1.0)
         pars.add_argument("--label_latex", type=inkex.Boolean, default=False)
+        pars.add_argument("--quiet_error", type=inkex.Boolean, default=False)
 
     def effect(self):
+        """Main entry point for the extension. Handles both auto-draw and manual selection modes."""
         # 1. Vérification du mode Auto-Draw
         syntax = self.options.gen_syntax.strip()
         if syntax:
             try:
+
                 import pyfeyngen
                 # Ici, on appelle ta bibliothèque externe
                 data = pyfeyngen.quick_geometry(syntax) 
@@ -44,7 +47,24 @@ class FeynmanLogic(inkex.EffectExtension):
                 return # On arrête ici pour ne pas traiter la sélection
                 
             except Exception as e:
-                inkex.errormsg(f"Erreur de génération : {str(e)}")
+                if self.options.quiet_error:
+                    label = inkex.TextElement()
+                    lid = self.svg.get_unique_id("label")
+                    label.set('id', lid)
+                    label.text = f"Error : {str(e)}"
+                    label.set('x', '50')
+                    label.set('y', '50')
+                    label.style = {
+                        'font-size': '12px',
+                        'fill': 'red',
+                        'text-anchor': 'middle',
+                        'dominant-baseline': 'middle',
+                        'font-family': 'sans-serif'
+                    }
+                    self.svg.get_current_layer().add(label)
+
+                else:
+                    inkex.errormsg(f"Error/Warning when generating : {str(e)}")
                 return
             
         for elem in self.svg.selection:
@@ -70,8 +90,8 @@ class FeynmanLogic(inkex.EffectExtension):
 
                     self.apply_momentum_flow(elem)
 
-    def remove_linked_ghost(self, elem):
-        """Supprime le ghost, la flèche de flux et le label associé"""
+    def remove_linked_ghost(self,  elem:inkex.PathElement):
+        """Remove ghost, la momemtum arrow + label"""
         for attr in ['data-feynman-ghost', 'data-feynman-ghost-arrow', 'data-feynman-label']:
             ghost_id = elem.get(attr)
             if ghost_id:
@@ -79,7 +99,8 @@ class FeynmanLogic(inkex.EffectExtension):
                 if ghost_elem is not None:
                     ghost_elem.delete()
 
-    def reset_path(self, elem):
+    def reset_path(self, elem:inkex.PathElement):
+        """Reset the path element to its original path data and remove any applied path effects."""
         NS_INK = "http://www.inkscape.org/namespaces/inkscape"
         original_d = elem.attrib.get(f"{{{NS_INK}}}original-d")
         if original_d:
@@ -88,7 +109,8 @@ class FeynmanLogic(inkex.EffectExtension):
                 del elem.attrib[f"{{{NS_INK}}}path-effect"]
             del elem.attrib[f"{{{NS_INK}}}original-d"]
 
-    def apply_separate_arrow(self, elem):
+    def apply_separate_arrow(self, elem:inkex.PathElement):
+        """Apply a separate arrow marker to the path element by adding a new path"""
         if self.options.arrow_type == "none": return
             
         # 1. On récupère le chemin avec toutes ses transformations appliquées
@@ -129,7 +151,8 @@ class FeynmanLogic(inkex.EffectExtension):
         # On ajoute le ghost à la racine du calque actuel pour éviter les doubles transformations
         elem.getparent().add(ghost)
 
-    def apply_particle_lpe(self, elem):
+    def apply_particle_lpe(self, elem:inkex.PathElement):
+        """Apply the appropriate Live Path Effect (LPE) or style to the path element based on particle type."""
         p_type = self.options.p_type
         if p_type == "fermion": return
         NS_INK = "http://www.inkscape.org/namespaces/inkscape"
@@ -161,7 +184,8 @@ class FeynmanLogic(inkex.EffectExtension):
         elem.attrib[f"{{{NS_INK}}}original-d"] = elem.get("d")
         elem.set(f"{{{NS_INK}}}path-effect", "#" + lpe_id)
 
-    def apply_vertices(self, elem):
+    def apply_vertices(self, elem:inkex.PathElement):
+        """Apply vertex markers to the path element based on the selected style and location."""
         v_style, v_loc = self.options.v_style, self.options.v_location
         elem.style['marker-start'] = elem.style['marker-end'] = elem.style['marker-mid'] = 'none'
         if v_style == "none": return
@@ -180,7 +204,8 @@ class FeynmanLogic(inkex.EffectExtension):
         elif v_loc == "up": elem.style['marker-start' if y1 < y2 else 'marker-end'] = marker_url
         elif v_loc == "down": elem.style['marker-start' if y1 > y2 else 'marker-end'] = marker_url
 
-    def ensure_pattern(self, p_type):
+    def ensure_pattern(self, p_type : str):
+        """Ensure the SVG pattern for the given particle type exists, and return its ID."""
         p_id = f"fref_{p_type}"
         if self.svg.getElementById(p_id) is not None: return p_id
         info = self.patterns.get(p_type, {"d": "m 0,0 h 10"})
@@ -189,7 +214,8 @@ class FeynmanLogic(inkex.EffectExtension):
         new_p.style = {'stroke': 'black', 'stroke-width': '1', 'fill': 'none'}
         self.svg.defs.add(new_p); return p_id
 
-    def ensure_vertex_marker(self, v_style):
+    def ensure_vertex_marker(self, v_style : str):
+        """Ensure the SVG marker for the given vertex style exists, and return its ID."""
         m_id = f"fmarker_{v_style}_{self.options.v_size}"
         if self.svg.getElementById(m_id) is not None: return m_id
         size = self.options.v_size
@@ -204,6 +230,7 @@ class FeynmanLogic(inkex.EffectExtension):
         marker.add(shape); self.svg.defs.add(marker); return m_id
 
     def ensure_arrow_marker(self, momentum = False):
+        """Ensure the SVG marker for the arrow (or momentum arrow) exists, and return its ID."""
         if momentum:
             type = 'forward'
             m_id = f"farrow_momentum_{self.options.momentum_arrow}"
@@ -221,7 +248,8 @@ class FeynmanLogic(inkex.EffectExtension):
         arrow.style = {'fill': 'context-stroke', 'stroke': 'none'}
         marker.add(arrow); self.svg.defs.add(marker); return m_id
 
-    def apply_momentum_flow(self, elem):
+    def apply_momentum_flow(self, elem:inkex.PathElement):
+        """Draw a momentum flow arrow and/or label near the path element."""
         # 1. Calcul de la géométrie de base (nécessaire pour la flèche ET le label)
         path_instance = elem.path.transform(elem.composed_transform())
         csp = path_instance.to_superpath()
@@ -299,10 +327,10 @@ class FeynmanLogic(inkex.EffectExtension):
             elem.addnext(label)
             elem.set('data-feynman-label', lid)
     
-    def get_arrow_direction(self, elem, orientation):
+    def get_arrow_direction(self, elem:inkex.PathElement, orientation : str):
         """
-        Détermine si le marqueur doit être 'forward' (A->B) ou 'backward' (B->A)
-        en fonction de l'orientation souhaitée.
+        Determine if the marker should be 'forward' (A->B) or 'backward' (B->A)
+        based on the desired orientation and the geometry of the path.
         """
         if (orientation == "forward") or (orientation == "backward"):
             return orientation
@@ -341,10 +369,7 @@ class FeynmanLogic(inkex.EffectExtension):
         return "forward"
 
     def generate_diagram(self, data):
-        """
-        Génère le diagramme à partir des données pyfeyngen.
-        Utilise des markers pour les sommets avec une logique anti-doublon.
-        """
+        """ Generate the diagram from pyfeyngen data. Uses markers for vertices with anti-duplication logic. """
         layer = self.svg.get_current_layer()
         scale = 1.0  
         offset_x, offset_y = 50, 50 
@@ -448,7 +473,8 @@ class FeynmanLogic(inkex.EffectExtension):
             for key, val in original_opts.items():
                 setattr(self.options, key, val)
 
-    def get_start_end_from_elem(self, elem):
+    def get_start_end_from_elem(self, elem:inkex.PathElement):
+        """Return the start and end coordinates of a path element, transformed to document coordinates."""
 
         path = elem.path.to_superpath()
 

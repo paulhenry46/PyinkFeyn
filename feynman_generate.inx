@@ -15,6 +15,7 @@
             <param name="momentum_length" type="float" min="0.1" max="100.0" gui-text="Momentum length">15.0</param>
             <param name="momentum_offset" type="float" min="0.1" max="100.0" gui-text="Momentum offset">12.0</param>
             <param name="label_latex" type="bool" gui-text="Put labels between $">false</param>
+            <param name="quiet_error" type="bool" gui-text="Quiet Error">false</param>
         </page>
         
     </param>
