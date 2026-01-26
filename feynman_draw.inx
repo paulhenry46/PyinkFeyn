@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Feynman Builder Draw</name>
+    <id>org.physics.feynman_builder_draw</id>
+
+    <param name="tabs" type="notebook">
+        
+        <page name="line_tab" gui-text="Propagateur">
+            <param name="p_type" type="optiongroup" appearance="combo" gui-text="Type de particule :">
+                <option value="photon">Photon / Boson (Sinuosité)</option>
+                <option value="gluon">Gluon (Boucles)</option>
+                <option value="fermion">Fermion (Ligne droite)</option>
+                <option value="scalar">Scalaire (Tirets)</option>
+                <option value="ghost">Ghost (Pointillés)</option>
+                <option value="no_change">Don't touch line style</option>
+            </param>
+            <separator />
+            <param name="amplitude" type="float" min="0.1" max="100.0" gui-text="Amplitude (Hauteur)">5.0</param>
+            <param name="arrow_type" type="optiongroup" appearance="combo" gui-text="Flèche de flux :">
+                <option value="none">Aucune</option>
+                <option value="right">Vers la droite</option>
+                <option value="left">Vers la gauche</option>
+                <option value="up">Vers le haut</option>
+                <option value="down">Vers le bas</option>
+                <option value="forward">Sens direct (A vers B)</option>
+                <option value="backward">Sens inverse (B vers A)</option>
+            </param>
+            <param name="momentum_arrow" type="optiongroup" appearance="combo" gui-text="Flèche de momentum :">
+                <option value="none">Aucune</option>
+                <option value="right">Vers la droite</option>
+                <option value="left">Vers la gauche</option>
+                <option value="up">Vers le haut</option>
+                <option value="down">Vers le bas</option>
+                <option value="forward">Sens direct (A vers B)</option>
+                <option value="backward">Sens inverse (B vers A)</option>
+            </param>
+            <param name="momentum_label" type="string" gui-text="Momentum Label (ex: p_1)"></param>
+        </page>
+
+        <page name="node_tab" gui-text="Sommets">
+            <label>Options pour les extrémités ou nœuds sélectionnés :</label>
+            <param name="v_style" type="optiongroup" appearance="combo" gui-text="Style de sommet :">
+                <option value="none">Aucun</option>
+                <option value="dot">Point noir (Dot)</option>
+                <option value="blob">Gros cercle (Blob)</option>
+                <option value="square">Carré (Masse)</option>
+            </param>
+            <param name="v_location" type="optiongroup" appearance="combo" gui-text="Côté du sommet :">
+                <option value="both">Les deux côtés</option>
+                <option value="left">Le plus à gauche (X min)</option>
+                <option value="right">Le plus à droite (X max)</option>
+                <option value="up">Le plus en haut</option>
+                <option value="down">Le plus en bas</option>
+                <option value="start">Départ du tracé</option>
+                <option value="end">Fin du tracé</option>
+            </param>
+            <param name="v_size" type="float" min="1.0" max="20.0" gui-text="Taille du sommet">3.0</param>
+            <param name="v_apply_all" type="bool" gui-text="Appliquer à tous les nœuds du chemin">false</param>
+        </page>
+        <page name="advanced_tab" gui-text="Options avancées">
+        <param name="momentum_length" type="float" min="0.1" max="100.0" gui-text="Longueur du momentum">15.0</param>
+        <param name="momentum_offset" type="float" min="0.1" max="100.0" gui-text="Offset du momentum">12.0</param>
+        <param name="label_latex" type="bool" gui-text="Mettre les label entre $">false</param>
+        </page>
+    </param>
+
+    <effect>
+        <object-type>path</object-type>
+        <effects-menu>
+            <submenu name="Physique"/>
+        </effects-menu>
+    </effect>
+
+    <script>
+        <command location="inx" interpreter="python">feynman_logic.py</command>
+    </script>
+</inkscape-extension>
