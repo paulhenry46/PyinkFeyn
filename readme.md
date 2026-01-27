@@ -6,6 +6,7 @@
   </a>
 
   <h3 align="center">PyInkFeyn</h3>
+  </div>
 
 **PyInkFeyn** is a powerful Inkscape extension designed to create professional, publication-ready Feynman diagrams. Unlike standard drawing tools, PyInkFeyn understands the physics behind the lines, offering automated propagators, LaTeX support, and intelligent flow direction.
 
