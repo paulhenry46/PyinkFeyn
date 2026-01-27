@@ -1,4 +1,11 @@
-# PyInkFeyn
+
+<br />
+<div align="center">
+  <a href="https://github.com/paulhenry46/pyfeyngen">
+    <img src="docs/logo.png" alt="Logo" width="80" >
+  </a>
+
+  <h3 align="center">Pyfeyngen</h3>
 
 **PyInkFeyn** is a powerful Inkscape extension designed to create professional, publication-ready Feynman diagrams. Unlike standard drawing tools, PyInkFeyn understands the physics behind the lines, offering automated propagators, LaTeX support, and intelligent flow direction.
 
