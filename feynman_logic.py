@@ -3,6 +3,21 @@ import math
 from inkex import PathElement, Circle, Rectangle, Marker
 
 class FeynmanLogic(inkex.EffectExtension):
+    #Helpers functions
+    def lerp(self, a, b, t=0.5): 
+        '''Linear interpolation function for points'''
+        return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t]
+    
+    def casteljau_midpoint(self, p0, c0, c1, p1):
+        """Compute the midpoint (t=0.5) of a cubic Bezier curve using De Casteljau's algorithm."""
+        m1 = self.lerp(p0, c0)
+        m2 = self.lerp(c0, c1)
+        m3 = self.lerp(c1, p1)
+        q1 = self.lerp(m1, m2)
+        q2 = self.lerp(m2, m3)
+        mid_p = self.lerp(q1, q2)
+        return q1, mid_p, q2
+    
     patterns = {
         "photon": {"d": "m 0,0 c 5,-10 10,10 15,0", "normal_offset": 0},
         "gluon": {
@@ -34,16 +49,13 @@ class FeynmanLogic(inkex.EffectExtension):
 
     def effect(self):
         """Main entry point for the extension. Handles both auto-draw and manual selection modes."""
-        # 1. Vérification du mode Auto-Draw
         syntax = self.options.gen_syntax.strip()
         if syntax:
             try:
-
                 import pyfeyngen
-                # Ici, on appelle ta bibliothèque externe
                 data = pyfeyngen.quick_geometry(syntax) 
                 self.generate_diagram(data)
-                return # On arrête ici pour ne pas traiter la sélection
+                return
                 
             except Exception as e:
                 if self.options.quiet_error:
@@ -61,36 +73,28 @@ class FeynmanLogic(inkex.EffectExtension):
                         'font-family': 'sans-serif'
                     }
                     self.svg.get_current_layer().add(label)
-
                 else:
                     inkex.errormsg(f"Error/Warning when generating : {str(e)}")
                 return
             
         for elem in self.svg.selection:
             if isinstance(elem, inkex.PathElement):
-                # 1. Nettoyage ciblé : on cherche l'ID stocké dans l'attribut
                 self.remove_linked_ghost(elem)
                 if self.options.p_type != "no_change":
-                    # 2. Reset du LPE
                     self.reset_path(elem)
-                    # 3. Application visuelle
                     self.apply_particle_lpe(elem)
                 self.apply_vertices(elem)
                 
-                # 4. Création de la flèche
                 if self.options.arrow_type != "none":
                     self.options.arrow_type = self.get_arrow_direction(elem, self.options.arrow_type)
                     self.apply_separate_arrow(elem)
-                # 5. Flèche de flux (décalée et courte)
-                # On suppose que l'option s'appelle "show_momentum"
+
                 if self.options.momentum_arrow != "none" or self.options.momentum_label:
-
                     self.options.momentum_arrow = self.get_arrow_direction(elem, self.options.momentum_arrow)
-
                     self.apply_momentum_flow(elem)
 
     def remove_linked_ghost(self,  elem:inkex.PathElement):
-        """Remove ghost, la momemtum arrow + label"""
+        """Remove ghost, momemtum arrow and label"""
         for attr in ['data-feynman-ghost', 'data-feynman-ghost-arrow', 'data-feynman-label']:
             ghost_id = elem.get(attr)
             if ghost_id:
@@ -112,28 +116,22 @@ class FeynmanLogic(inkex.EffectExtension):
         """Apply a separate arrow marker to the path element by adding a new path"""
         if self.options.arrow_type == "none": return
             
-        # 1. On récupère le chemin avec toutes ses transformations appliquées
-        # Cela convertit les coordonnées "locaux + transform" en coordonnées "réelles"
+
         path_instance = elem.path.transform(elem.composed_transform())
         csp = path_instance.to_superpath()
         
         if len(csp[0]) >= 2:
+            # Extract the four key points of the cubic Bezier: start, first control, second control, end
             p0, h0, h1, p1 = csp[0][0][1], csp[0][0][2], csp[0][-1][0], csp[0][-1][1]
-            def lerp(a, b, t=0.5): return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t]
-            m0, m1, m2 = lerp(p0, h0), lerp(h0, h1), lerp(h1, p1)
-            q0, q1 = lerp(m0, m1), lerp(m1, m2)
-            mid_p = lerp(q0, q1)
+            # Use De Casteljau's algorithm to find the midpoint and control points
+            q0, mid_p, q1 = self.casteljau_midpoint(p0, h0, h1, p1)
+            # Insert a new segment at the midpoint to allow for a separate arrow marker
             csp[0].insert(1, [q0, mid_p, q1])
 
         ghost = PathElement()
         new_ghost_id = self.svg.get_unique_id("ghost")
         ghost.set('id', new_ghost_id)
-        #ghost.set('sodipodi:insensitive', 'true')
         ghost.set('d', str(inkex.Path(inkex.CubicSuperPath(csp))))
-        
-        # IMPORTANT : On ne copie PAS le transform du parent ici car 
-        # .transform(elem.composed_transform()) a déjà "aplati" les coordonnées.
-        # Le ghost est donc déjà aux bonnes coordonnées mondiales.
         
         elem.set('data-feynman-ghost', new_ghost_id)
         
@@ -147,7 +145,6 @@ class FeynmanLogic(inkex.EffectExtension):
             'pointer-events': 'none'
         }
         
-        # On ajoute le ghost à la racine du calque actuel pour éviter les doubles transformations
         elem.getparent().add(ghost)
 
     def apply_particle_lpe(self, elem:inkex.PathElement):
@@ -168,7 +165,7 @@ class FeynmanLogic(inkex.EffectExtension):
         lpe_node.set('is_fittopath', 'true')
         lpe_node.set('is_upper_case', 'true')
 
-        # --- GESTION DES POINTILLÉS / TIRETS ---
+        # --- DASHED/DOTTED LINE MANAGEMENT ---
         if "dash" in pattern_info:
             elem.style['stroke-dasharray'] = pattern_info["dash"]
         else:
@@ -176,7 +173,7 @@ class FeynmanLogic(inkex.EffectExtension):
         # ---------------------------------------
 
         if p_type in ["scalar", "ghost", "fermion"]:
-            # Pour ces types, on ne met pas de LPE, juste le style de ligne
+            # For these types, do not apply LPE, just set the line style
             elem.attrib[f"{{{NS_INK}}}original-d"] = elem.get("d")
             return
         
@@ -192,7 +189,6 @@ class FeynmanLogic(inkex.EffectExtension):
         
         start, end = self.get_start_end_from_elem(elem)
         x1, y1 = start
-        # 3. Le point d'arrivée (end) est la coordonnée de la dernière commande du tracé
         x2, y2 = end
         
         if v_loc == "both": elem.style['marker-start'] = elem.style['marker-end'] = marker_url
@@ -241,32 +237,36 @@ class FeynmanLogic(inkex.EffectExtension):
         marker = Marker()
         marker.set('id', m_id); marker.set('orient', 'auto')
         marker.set('refX', '5'); marker.set('refY', '4')
-        marker.set('markerWidth', '10'); marker.set('markerHeight', '8'); marker.set('markerUnits', 'userSpaceOnUse')
+        marker.set('markerWidth', '10'); 
+        marker.set('markerHeight', '8'); 
+        marker.set('markerUnits', 'userSpaceOnUse')
+
         d = "M 0,0 L 10,4 L 0,8 L 2,4 Z" if type == "forward" else "M 10,0 L 0,4 L 10,8 L 8,4 Z"
+
         arrow = PathElement(); arrow.set('d', d)
         arrow.style = {'fill': 'context-stroke', 'stroke': 'none'}
         marker.add(arrow); self.svg.defs.add(marker); return m_id
 
     def apply_momentum_flow(self, elem:inkex.PathElement):
         """Draw a momentum flow arrow and/or label near the path element."""
-        # 1. Calcul de la géométrie de base (nécessaire pour la flèche ET le label)
+        # 1. Compute base geometry (needed for both arrow and label)
         path_instance = elem.path.transform(elem.composed_transform())
         csp = path_instance.to_superpath()
         if len(csp[0]) < 2: return
 
+        # Extract the four key points of the cubic Bezier: start, first control, second control, end
         p0, c0, c1, p1 = csp[0][0][1], csp[0][0][2], csp[0][-1][0], csp[0][-1][1]
-        def lerp(a, b, t=0.5): return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t]
-        m1, m2, m3 = lerp(p0, c0), lerp(c0, c1), lerp(c1, p1)
-        q1, q2 = lerp(m1, m2), lerp(m2, m3)
-        mid_p = lerp(q1, q2)
+        # Use De Casteljau's algorithm to find the midpoint and control points
+        q1, mid_p, q2 = self.casteljau_midpoint(p0, c0, c1, p1)
 
+        # Compute the tangent vector at the midpoint
         tx, ty = q2[0] - q1[0], q2[1] - q1[1]
         t_len = (tx**2 + ty**2)**0.5
-        if t_len == 0: return
-        ux, uy = tx/t_len, ty/t_len
-        nx, ny = -uy, ux 
+        if t_len == 0: return  # Avoid division by zero if tangent is degenerate
+        ux, uy = tx/t_len, ty/t_len  # Unit tangent vector
+        nx, ny = -uy, ux  # Unit normal vector (perpendicular to tangent)
 
-        # 2. AFFICHAGE DE LA FLÈCHE (si activée)
+        # 2. DRAW THE ARROW (if enabled)
         if self.options.momentum_arrow != "none":
             a_len, offset = self.options.momentum_length, self.options.momentum_offset
             ax, ay = mid_p[0] + (nx * offset) - (ux * a_len/2), mid_p[1] + (ny * offset) - (uy * a_len/2)
@@ -292,19 +292,19 @@ class FeynmanLogic(inkex.EffectExtension):
             elem.addnext(flow_ghost)
             elem.set('data-feynman-ghost-arrow', fid)
 
-        # 3. AFFICHAGE DU LABEL (Indépendant de la flèche)
+        # 3. DRAW THE LABEL (independent of the arrow)
         if self.options.momentum_label:
             label = inkex.TextElement()
             lid = self.svg.get_unique_id("label")
             label.set('id', lid)
             
-            # Calcul de l'angle pour l'orientation
+            # Compute angle for label orientation
             angle = math.degrees(math.atan2(ty, tx))
             if angle > 90: angle -= 180
             if angle < -90: angle += 180
             
-            # Si la flèche n'est pas là, on réduit peut-être un peu l'offset 
-            # pour que le texte soit plus proche du propagateur
+            # If the arrow is not present, reduce the offset
+            # so the text is closer to the propagator
             current_offset = self.options.momentum_offset
             text_margin = 8 if self.options.momentum_arrow != "none" else 5
             t_off = current_offset + (text_margin if current_offset >= 0 else -text_margin)
@@ -334,35 +334,29 @@ class FeynmanLogic(inkex.EffectExtension):
         if (orientation == "forward") or (orientation == "backward"):
             return orientation
         
-        
-
-        # 2. Le point de départ (start) est toujours la coordonnée de la 1ère commande (Move)
-        # path[0] est la commande 'M', .end est son point de destination
         start, end = self.get_start_end_from_elem(elem)
 
         x1, y1 = start
-        
-        # 3. Le point d'arrivée (end) est la coordonnée de la dernière commande du tracé
         x2, y2 = end
 
-        eps = 0.001 # Tolérance pour les arrondis
+        eps = 0.001 # Tolerance for rounding
         
         if orientation == "right":
-            # On veut que la pointe soit à droite. 
-            # Si x2 (fin) est à droite de x1 (début), c'est forward.
+            # We want the arrowhead to be on the right.
+            # If x2 (end) is to the right of x1 (start), it's forward.
             return "forward" if x2 > x1 + eps else "backward"
             
         elif orientation == "left":
-            # On veut que la pointe soit à gauche.
+            # We want the arrowhead to be on the left.
             return "forward" if x2 < x1 - eps else "backward"
             
         elif orientation == "up":
-            # Inkscape Y+ est vers le bas. "Haut" signifie Y décroissant.
-            # Si y2 est plus petit que y1, on monte bien : forward.
+            # Inkscape Y+ is downward. "Up" means decreasing Y.
+            # If y2 is less than y1, we are going up: forward.
             return "forward" if y2 < y1 - eps else "backward"
             
         elif orientation == "down":
-            # "Bas" signifie Y croissant.
+            # "Down" means increasing Y.
             return "forward" if y2 > y1 + eps else "backward"
         
         return "forward"
@@ -373,52 +367,52 @@ class FeynmanLogic(inkex.EffectExtension):
         scale = 1.0  
         offset_x, offset_y = 50, 50 
 
-        # Suivi des nœuds déjà marqués pour éviter les superpositions de Blobs
+        # Track already marked nodes to avoid overlapping blobs
         nodes_already_marked = set()
-        # Identification des nœuds qui doivent avoir un style spécial
+        # Identify nodes that should have a special style
         special_nodes = {nid for nid, info in data['nodes'].items() if info.get('style') == 'blob'}
 
         for edge in data['edges']:
-            # 1. Calcul des coordonnées mondiales
+            # 1. Compute world coordinates
             x1 = edge['start'][0] * scale + offset_x
             y1 = edge['start'][1] * scale + offset_y
             x2 = edge['end'][0] * scale + offset_x
             y2 = edge['end'][1] * scale + offset_y
             
-            # 2. Création du chemin SVG
+            # 2. Create the SVG path
             path_elem = PathElement()
             
-            # Récupération de la courbure envoyée par la bibliothèque
-            # On considère que si bend == 0, c'est une ligne droite.
+            # Get the curvature sent by the library
+            # If bend == 0, it's a straight line.
             bend = edge.get('bend', 0.0)
             
             if bend != 0:
-                # 1. Calcul du milieu (M)
+                # 1. Compute the midpoint (M)
                 mx, my = (x1 + x2) / 2, (y1 + y2) / 2
                 
-                # 2. Vecteur directeur (V)
+                # 2. Direction vector (V)
                 dx, dy = (x2 - x1), (y2 - y1)
                 dist = (dx**2 + dy**2)**0.5
                 
                 if dist > 0.001:
-                    # 3. Calcul du point de contrôle (Q)
-                    # Le décalage est perpendiculaire : (-dy, dx)
-                    # On multiplie par 'bend' pour l'amplitude
+                    # 3. Compute the control point (Q)
+                    # The offset is perpendicular: (-dy, dx)
+                    # Multiply by 'bend' for amplitude
                     cx = mx - (dy / dist) * (dist * bend)
                     cy = my + (dx / dist) * (dist * bend)
                     
                     path_elem.set('d', f"M {x1},{y1} Q {cx},{cy} {x2},{y2}")
                 else:
-                    # Sécurité si les points sont superposés
+                    # Safety: if points are overlapping
                     path_elem.set('d', f"M {x1},{y1} L {x2},{y2}")
             else:
-                # Ligne droite classique
+                # Standard straight line
                 path_elem.set('d', f"M {x1},{y1} L {x2},{y2}")
             
             path_elem.style = {'stroke': 'black', 'stroke-width': '1', 'fill': 'none'}
             layer.add(path_elem)
             
-            # 3. Sauvegarde et configuration temporaire des options
+            # 3. Save and temporarily set options
             original_opts = {
                 'p_type': self.options.p_type,
                 'momentum_label': self.options.momentum_label,
@@ -428,21 +422,20 @@ class FeynmanLogic(inkex.EffectExtension):
                 'momentum_arrow': self.options.momentum_arrow
             }
             
-            # Configuration selon les données de l'edge
+            # Configure according to edge data
             self.options.p_type = edge['type']
             self.options.momentum_label = edge.get('label', '')
             self.options.momentum_arrow = "none"
 
-            # Gestion de l'orientation de la flèche (Fermions / Anti-particules)
+            # Handle arrow orientation (Fermions / Anti-particles)
             if edge['type'] == 'fermion':
                 self.options.arrow_type = "backward" if edge.get('is_anti', False) else "forward"
             else:
                 self.options.arrow_type = "none"
 
-            # --- LOGIQUE ANTI-DOUBLON POUR LES MARKERS ---
             s_node, e_node = edge['start_node'], edge['end_node']
             
-            # Un marker n'est posé que si le nœud est un 'blob' ET n'a pas encore été marqué
+            # A marker is only placed if the node is a 'blob' AND has not already been marked
             start_needs_blob = (s_node in special_nodes and s_node not in nodes_already_marked)
             end_needs_blob = (e_node in special_nodes and e_node not in nodes_already_marked)
             
@@ -458,7 +451,7 @@ class FeynmanLogic(inkex.EffectExtension):
             else:
                 self.options.v_style = "none"
 
-            # 4. Application des traitements visuels existants
+            # 4. Apply existing visual treatments
             self.apply_particle_lpe(path_elem)
             self.apply_vertices(path_elem)
             
@@ -468,7 +461,7 @@ class FeynmanLogic(inkex.EffectExtension):
             if self.options.momentum_label:
                 self.apply_momentum_flow(path_elem)
 
-            # 5. Restauration des options de l'interface utilisateur
+            # 5. Restore user interface options
             for key, val in original_opts.items():
                 setattr(self.options, key, val)
 
@@ -480,7 +473,7 @@ class FeynmanLogic(inkex.EffectExtension):
         start_raw = path[0][0][1]
         end_raw = path[0][-1][1]
 
-        # On applique la matrice de transformation de l'objet pour avoir les vrais X/Y
+        # Apply the object's transformation matrix to get the real X/Y
         start_pt = elem.transform.apply_to_point(start_raw)
         end_pt = elem.transform.apply_to_point(end_raw)
 
@@ -488,6 +481,8 @@ class FeynmanLogic(inkex.EffectExtension):
         x2, y2 = end_pt.x, end_pt.y
         
         return (x1, y1), (x2, y2)
+
+    
 
 if __name__ == '__main__':
     FeynmanLogic().run()
