@@ -42,7 +42,7 @@ An example of diagram produced with chain `e+ e-  > [H Z0 gamma]  > (mu+ > e-) (
 * **macOS**: `~/Library/Application Support/org.inkscape.Inkscape/config/inkscape/extensions/`
 4. **Restart**: Restart Inkscape.
 
-## 🛠 Usage
+## Usage
 Go to `extensions > Physics > PyInkFeyn Stylize / PyInkFeyn Generator`
 
 PyInkFeyn offers two ways to work:
@@ -58,17 +58,17 @@ Input a simple text-based description of your diagram (e.g., `e- e+ > gamma > mu
 3. Go to **Extensions > PyInkFeyn > PyInkFeyn Stylize**.
 4. Choose your particle type and **Arrow Orientation** (e.g., "Right" to ensure the arrow points toward the future).
 
-## 🧬 Dependencies
+## Dependencies
 
 This extension bundles a specific version of the `pyfeyngen` library. You do **not** need to install it separately if you use the provided release ZIP.
 
-## 🤝 Contributing
+## Contributing
 
 For developpers, you can simply clone the repo and populate the `pyfeyngen` folder with all files from `src/pyfeyngen` of the [repo of pyfeyngen](https://github.com/paulhenry46/pyfeyngen).
 
 Contributions are welcome! If you find a bug or have a feature request, please open an **Issue** or a **Pull Request**.
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
