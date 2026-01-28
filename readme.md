@@ -10,7 +10,7 @@
 
 **PyInkFeyn** is a powerful Inkscape extension designed to create professional, publication-ready Feynman diagrams. Unlike standard drawing tools, PyInkFeyn understands the physics behind the lines, offering automated propagators, LaTeX support, and intelligent flow direction.
 
-## 🚀 Features
+## Features
 
 * **Smart Propagators**: Automatic styling for Fermions, Photons, Gluons, and Scalars.
 * **Intelligent Flow Direction**: Force arrows to point **Up, Down, Left, or Right** regardless of how you drew the path.
@@ -18,7 +18,17 @@
 * **LaTeX Integration**: Automatically renders labels in math mode for perfect scientific typography.
 * **Non-Destructive Editing**: Uses "ghost paths" to display arrows, keeping your original paths easy to edit with Inkscape’s Node tool.
 
-## 📥 Installation
+## Installation
+
+## Screenshots
+
+### Builder
+![Screenshot 1](docs/s1.png)
+![Screenshot 2](docs/s2.png)
+![Screenshot 3](docs/s3.png)
+### Generator
+![Screenshot 4](docs/s4.png)
+![Screenshot 5](docs/s5.png)
 
 1. **Download**: Go to the [Releases](https://github.com/paulhenry46/PyInkFeyn/releases) page and download the latest `pyinkfeyn_vX.X.X.zip`.
 2. **Extract**: Unzip the contents.
