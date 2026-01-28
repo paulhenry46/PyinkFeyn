@@ -46,6 +46,8 @@ class FeynmanLogic(inkex.EffectExtension):
         pars.add_argument("--gen_scale", type=float, default=1.0)
         pars.add_argument("--label_latex", type=inkex.Boolean, default=False)
         pars.add_argument("--quiet_error", type=inkex.Boolean, default=False)
+        pars.add_argument("--gen_x_spacing", type=int, default=150)
+        pars.add_argument("--gen_y_spacing", type=int, default=100)
 
     def effect(self):
         """Main entry point for the extension. Handles both auto-draw and manual selection modes."""
@@ -53,7 +55,7 @@ class FeynmanLogic(inkex.EffectExtension):
         if syntax:
             try:
                 import pyfeyngen
-                data = pyfeyngen.quick_geometry(syntax) 
+                data = pyfeyngen.quick_geometry(syntax, self.options.gen_x_spacing, self.options.gen_y_spacing) 
                 self.generate_diagram(data)
                 return
                 
