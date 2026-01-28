@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="480.63953mm"
+   height="126.07999mm"
+   viewBox="0 0 480.63952 126.08"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (1:1.4.2+202505120737+ebf0e940d0)"
+   sodipodi:docname="example2.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="0.25165631"
+     inkscape:cx="1118.5891"
+     inkscape:cy="423.19623"
+     inkscape:window-width="1181"
+     inkscape:window-height="1008"
+     inkscape:window-x="739"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg1">
+    <inkscape:grid
+       id="grid1"
+       units="mm"
+       originx="-77.075562"
+       originy="-91.836548"
+       spacingx="0.26458333"
+       spacingy="0.26458334"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       enabled="true"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <path
+       d="M 0,0 C 5,-10 10,10 15,0"
+       id="fref_photon"
+       style="fill:none;stroke:#000000;stroke-width:1" />
+    <inkscape:path-effect
+       id="lpe9064"
+       effect="skeletal"
+       pattern="#fref_photon"
+       copytype="repeated_stretched"
+       width="5.0"
+       normal_offset="0"
+       is_fittopath="true"
+       is_upper_case="true"
+       is_visible="true"
+       lpeversion="0"
+       prop_scale="1"
+       scale_y_rel="false"
+       spacing="0"
+       tang_offset="0"
+       prop_units="false"
+       vertical_pattern="false"
+       hide_knot="false"
+       fuse_tolerance="0" />
+    <inkscape:path-effect
+       id="lpe3703"
+       effect="skeletal"
+       pattern="#fref_photon"
+       copytype="repeated_stretched"
+       width="5.0"
+       normal_offset="0"
+       is_fittopath="true"
+       is_upper_case="true"
+       is_visible="true"
+       lpeversion="0"
+       prop_scale="1"
+       scale_y_rel="false"
+       spacing="0"
+       tang_offset="0"
+       prop_units="false"
+       vertical_pattern="false"
+       hide_knot="false"
+       fuse_tolerance="0" />
+    <inkscape:path-effect
+       id="lpe5065"
+       effect="skeletal"
+       pattern="#fref_photon"
+       copytype="repeated_stretched"
+       width="5.0"
+       normal_offset="0"
+       is_fittopath="true"
+       is_upper_case="true"
+       is_visible="true"
+       lpeversion="0"
+       prop_scale="1"
+       scale_y_rel="false"
+       spacing="0"
+       tang_offset="0"
+       prop_units="false"
+       vertical_pattern="false"
+       hide_knot="false"
+       fuse_tolerance="0" />
+    <marker
+       id="farrow_forward"
+       orient="auto"
+       refX="5"
+       refY="4"
+       markerWidth="10"
+       markerHeight="8"
+       markerUnits="userSpaceOnUse">
+      <path
+         d="M 0,0 10,4 0,8 2,4 Z"
+         style="fill:context-stroke;stroke:none"
+         id="path9" />
+    </marker>
+    <marker
+       id="farrow_backward"
+       orient="auto"
+       refX="5"
+       refY="4"
+       markerWidth="10"
+       markerHeight="8"
+       markerUnits="userSpaceOnUse">
+      <path
+         d="M 10,0 0,4 10,8 8,4 Z"
+         style="fill:context-stroke;stroke:none"
+         id="path10" />
+    </marker>
+    <path
+       d="m 136.21414,149.28102 c 1.74575,0 3.48637,-0.35809 4.92564,-0.9913 1.43978,-0.63322 2.56945,-1.53971 3.23396,-2.51027 0.66399,-0.97151 0.85872,-2.00049 0.64082,-2.85517 -0.2179,-0.85371 -0.84532,-1.52555 -1.63863,-1.86289 -0.7938,-0.33734 -1.74525,-0.33639 -2.53956,0 -0.7938,0.33734 -1.4202,1.00918 -1.63862,1.86289 -0.21892,0.85468 -0.0226,1.88366 0.64083,2.85517 0.66348,0.97151 1.79417,1.87609 3.23342,2.51027 1.43928,0.63415 3.17989,0.9913 4.92565,0.9913"
+       id="fref_gluon"
+       style="fill:none;stroke:#000000;stroke-width:1" />
+    <inkscape:path-effect
+       id="lpe6103"
+       effect="skeletal"
+       pattern="#fref_gluon"
+       copytype="repeated_stretched"
+       width="5.0"
+       normal_offset="-4.23"
+       is_fittopath="true"
+       is_upper_case="true"
+       is_visible="true"
+       lpeversion="0"
+       prop_scale="1"
+       scale_y_rel="false"
+       spacing="0"
+       tang_offset="0"
+       prop_units="false"
+       vertical_pattern="false"
+       hide_knot="false"
+       fuse_tolerance="0" />
+    <marker
+       id="farrow_momentum_forward"
+       orient="auto"
+       refX="5"
+       refY="4"
+       markerWidth="10"
+       markerHeight="8"
+       markerUnits="userSpaceOnUse">
+      <path
+         d="M 0,0 10,4 0,8 2,4 Z"
+         style="fill:context-stroke;stroke:none"
+         id="path12" />
+    </marker>
+    <path
+       d="M 0,0 H 10"
+       id="fref_scalar"
+       style="fill:none;stroke:#000000;stroke-width:1" />
+    <inkscape:path-effect
+       id="lpe307"
+       effect="skeletal"
+       pattern="#fref_scalar"
+       copytype="repeated_stretched"
+       width="5.0"
+       normal_offset="0"
+       is_fittopath="true"
+       is_upper_case="true"
+       is_visible="true"
+       lpeversion="0"
+       prop_scale="1"
+       scale_y_rel="false"
+       spacing="0"
+       tang_offset="0"
+       prop_units="false"
+       vertical_pattern="false"
+       hide_knot="false"
+       fuse_tolerance="0" />
+    <path
+       d="M 0,0 C 5,-10 10,10 15,0"
+       id="fref_boson"
+       style="fill:none;stroke:#000000;stroke-width:1" />
+    <inkscape:path-effect
+       id="lpe2718"
+       effect="skeletal"
+       pattern="#fref_boson"
+       copytype="repeated_stretched"
+       width="5.0"
+       normal_offset="0"
+       is_fittopath="true"
+       is_upper_case="true"
+       is_visible="true"
+       lpeversion="0"
+       prop_scale="1"
+       scale_y_rel="false"
+       spacing="0"
+       tang_offset="0"
+       prop_units="false"
+       vertical_pattern="false"
+       hide_knot="false"
+       fuse_tolerance="0" />
+    <inkscape:path-effect
+       id="lpe4984"
+       effect="skeletal"
+       pattern="#fref_photon"
+       copytype="repeated_stretched"
+       width="5.0"
+       normal_offset="0"
+       is_fittopath="true"
+       is_upper_case="true"
+       is_visible="true"
+       lpeversion="0"
+       prop_scale="1"
+       scale_y_rel="false"
+       spacing="0"
+       tang_offset="0"
+       prop_units="false"
+       vertical_pattern="false"
+       hide_knot="false"
+       fuse_tolerance="0" />
+    <inkscape:path-effect
+       id="lpe242"
+       effect="skeletal"
+       pattern="#fref_photon"
+       copytype="repeated_stretched"
+       width="5.0"
+       normal_offset="0"
+       is_fittopath="true"
+       is_upper_case="true"
+       is_visible="true"
+       lpeversion="0"
+       prop_scale="1"
+       scale_y_rel="false"
+       spacing="0"
+       tang_offset="0"
+       prop_units="false"
+       vertical_pattern="false"
+       hide_knot="false"
+       fuse_tolerance="0" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-77.075562,-91.836541)" />
+  <path
+     d="M 0.19230769,104 120.19231,54"
+     style="fill:none;stroke:#000000;stroke-width:1;marker-start:none;marker-mid:none;marker-end:none"
+     data-feynman-ghost="ghost9836"
+     data-feynman-label="label787"
+     id="path51" />
+  <text
+     id="label787"
+     transform="rotate(-22.619843)"
+     style="font-size:10px;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;fill:#000000"
+     x="25.177219"
+     y="113.07351">$e^{+}$</text>
+  <path
+     id="ghost9836"
+     d="M 0.19230769,104 60.192308,79 120.19231,54"
+     style="fill:none;stroke:#000000;stroke-width:0.1;stroke-opacity:0;marker-mid:url(#farrow_backward)" />
+  <path
+     d="M 0.19230769,4 120.19231,54"
+     style="fill:none;stroke:#000000;stroke-width:1;marker-start:none;marker-mid:none;marker-end:none"
+     data-feynman-ghost="ghost1276"
+     data-feynman-label="label8136"
+     id="path52" />
+  <text
+     id="label8136"
+     transform="rotate(22.619843)"
+     style="font-size:10px;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;fill:#000000"
+     x="66.7164"
+     y="20.61816">$e^{-}$</text>
+  <path
+     id="ghost1276"
+     d="M 0.19230769,4 60.192308,29 120.19231,54"
+     style="fill:none;stroke:#000000;stroke-width:0.1;stroke-opacity:0;marker-mid:url(#farrow_forward)" />
+  <path
+     d="m 120.19231,54 q 60,-48 120,0"
+     style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:5, 5;marker-start:none;marker-mid:none;marker-end:none"
+     data-feynman-label="label6204"
+     id="path53" />
+  <text
+     id="label6204"
+     style="font-size:10px;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;fill:#000000"
+     x="180.19231"
+     y="47">$H^{0}$</text>
+  <path
+     d="m 170,100 c 5,-10 10,10 15,0 5,-10 10,10 15,0 5,-10 10,10 15,0 5,-10 10,10 15,0 5,-10 10,10 15,0 5,-10 10,10 15,0 5,-10 10,10 15,0 5,-10 10,10 15,0"
+     style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;marker-start:none;marker-mid:none;marker-end:none"
+     inkscape:original-d="M 170,100 H 290"
+     inkscape:path-effect="#lpe2718"
+     data-feynman-label="label1311"
+     id="path54"
+     transform="translate(-49.807692,-46)" />
+  <text
+     id="label1311"
+     style="font-size:10px;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;fill:#000000"
+     x="180.19231"
+     y="71">$Z^{0}$</text>
+  <path
+     d="m 170,100 c 10.53482,-4.378391 3.48711,15.14444 13.42983,9.5447 9.94272,-5.59975 5.6012,14.66857 14.56992,7.6287 1.17916,-0.92556 2.13081,-1.39297 2.9378,-1.51729 5.3211,-0.82189 6.22141,14.02385 12.72802,6.54986 7.49113,-8.60487 10.84329,11.7939 16.33443,1.79413 0,0 6e-5,-1e-4 6e-5,-1e-4 5.49114,-10 13.09383,9.14487 16.33448,-1.79405 2.81471,-9.50118 11.06738,2.50229 14.60304,-1.86201 0.53358,-0.65971 0.91466,-1.67968 1.06277,-3.17058 1.12712,-11.3458 15.18066,3.76609 14.56991,-7.62872 -0.61075,-11.394813 15.38891,1.69427 13.42983,-9.544709"
+     style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;marker-start:none;marker-mid:none;marker-end:none"
+     inkscape:original-d="m 170,100 q 60,48 120,0"
+     inkscape:path-effect="#lpe4984"
+     data-feynman-label="label2236"
+     id="path55"
+     transform="translate(-49.807692,-46)" />
+  <text
+     id="label2236"
+     style="font-size:10px;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;fill:#000000"
+     x="180.19231"
+     y="95">$\gamma$</text>
+  <path
+     d="m 240.19231,54 120,-50"
+     style="fill:none;stroke:#000000;stroke-width:1;marker-start:none;marker-mid:none;marker-end:none"
+     data-feynman-ghost="ghost8720"
+     data-feynman-label="label7814"
+     id="path56" />
+  <text
+     id="label7814"
+     transform="rotate(-22.619843)"
+     style="font-size:10px;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;fill:#000000"
+     x="265.94635"
+     y="159.22758">$\mu^{+}$</text>
+  <path
+     id="ghost8720"
+     d="m 240.19231,54 60,-25 60,-25"
+     style="fill:none;stroke:#000000;stroke-width:0.1;stroke-opacity:0;marker-mid:url(#farrow_backward)" />
+  <path
+     d="m 360.19231,4 h 120"
+     style="fill:none;stroke:#000000;stroke-width:1;marker-start:none;marker-mid:none;marker-end:none"
+     data-feynman-ghost="ghost7917"
+     data-feynman-label="label3050"
+     id="path57" />
+  <text
+     id="label3050"
+     style="font-size:10px;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;fill:#000000"
+     x="420.19232"
+     y="21">$e^{-}$</text>
+  <path
+     id="ghost7917"
+     d="m 360.19231,4 h 60 60"
+     style="fill:none;stroke:#000000;stroke-width:0.1;stroke-opacity:0;marker-mid:url(#farrow_forward)" />
+  <path
+     d="m 240.19231,54 120,50"
+     style="fill:none;stroke:#000000;stroke-width:1;marker-start:none;marker-mid:none;marker-end:none"
+     data-feynman-ghost="ghost9385"
+     data-feynman-label="label8836"
+     id="path58" />
+  <text
+     id="label8836"
+     transform="rotate(22.619843)"
+     style="font-size:10px;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;fill:#000000"
+     x="307.48553"
+     y="-25.535917">$\mu^{-}$</text>
+  <path
+     id="ghost9385"
+     d="m 240.19231,54 60,25 60,25"
+     style="fill:none;stroke:#000000;stroke-width:0.1;stroke-opacity:0;marker-mid:url(#farrow_forward)" />
+  <path
+     d="m 410,150 c 5,-10 10,10 15,0 5,-10 10,10 15,0 5,-10 10,10 15,0 5,-10 10,10 15,0 5,-10 10,10 15,0 5,-10 10,10 15,0 5,-10 10,10 15,0 5,-10 10,10 15,0"
+     style="fill:none;stroke:#000000;stroke-width:1;stroke-dasharray:none;marker-start:none;marker-mid:none;marker-end:none"
+     inkscape:original-d="M 410,150 H 530"
+     inkscape:path-effect="#lpe242"
+     data-feynman-label="label496"
+     id="path59"
+     transform="translate(-49.807692,-46)" />
+  <text
+     id="label496"
+     style="font-size:10px;font-family:sans-serif;dominant-baseline:middle;text-anchor:middle;fill:#000000"
+     x="420.19232"
+     y="121">$\gamma$</text>
+</svg>

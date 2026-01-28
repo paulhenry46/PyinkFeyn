@@ -26,10 +26,13 @@
 ### Generator
 ![Screenshot 4](docs/s4.png)
 ![Screenshot 5](docs/s5.png)
-### Example
+### Examples
 To the left, the skeleton of our graph and to the right, a result we got in 10s with the PyinkFeyn
 
 ![Example](docs/example.png)
+
+An example of diagram produced with chain `e+ e-  > [H Z0 gamma]  > (mu+ > e-) (mu- > gamma)`
+![Example](docs/example2.png)
 ## Installation
 1. **Download**: Go to the [Releases](https://github.com/paulhenry46/PyInkFeyn/releases) page and download the latest `pyinkfeyn_vX.X.X.zip`.
 2. **Extract**: Unzip the contents.

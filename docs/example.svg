@@ -182,7 +182,10 @@
     <path
        style="fill:none;stroke:#000000;stroke-width:2.1643;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.75"
        d="M 59.296545,46.918691 105.10754,149.99344"
-       id="path1" />
+       id="path1"
+       inkscape:export-filename="example.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2.1643;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:0.75"
        d="m 105.10754,149.99344 103.07475,68.71651"
