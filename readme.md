@@ -78,4 +78,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 You have selected a ghost path, which you can't see. It is used by the extension to draw central arrow on path with live path effect. Check which path you have selected with layer menu.
 
 ## Special thanks
-Special thanks to @pmc4 for [this repo](https://github.com/pmc4/feynkscape?tab=readme-ov-file#usage) which helps me drawing some effects. 
+Special thanks to @pmc4 for [this repo](https://codeberg.org/pmc4/feynkscape) which helps me drawing some effects.
